@@ -724,7 +724,6 @@ function loadWord() {
             sentenceEn.textContent = word.phrase;
             sentenceCn.textContent = '';
         }
-    }
 
     const card = document.getElementById('word-card');
     card.style.animation = 'none';

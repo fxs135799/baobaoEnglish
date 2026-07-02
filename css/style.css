@@ -326,6 +326,14 @@ body {
     color: #888;
 }
 
+.word-phonetic {
+    font-size: 22px;
+    color: #999;
+    font-family: "Segoe UI", "Noto Sans", sans-serif;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+}
+
 .action-buttons {
     display: flex;
     gap: 20px;

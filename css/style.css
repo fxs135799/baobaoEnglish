@@ -534,6 +534,41 @@ body {
 .exam-dot.correct { background: #2ecc71; }
 .exam-dot.wrong { background: #e74c3c; }
 
+.sentences-box {
+    width: 100%;
+    max-width: 600px;
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    text-align: left;
+}
+
+.sentence-item {
+    font-size: 18px;
+    color: #555;
+    padding: 10px 0;
+    border-bottom: 1px dashed #eee;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s;
+}
+
+.sentence-item:last-child { border-bottom: none; }
+
+.sentence-item:hover { background: #f8f9fa; border-radius: 10px; }
+
+.sentence-speaker { font-size: 22px; flex-shrink: 0; }
+
+.sentence-text { line-height: 1.5; }
+
+.sentence-en { font-weight: 600; color: #333; }
+
+.sentence-cn { color: #888; font-size: 16px; margin-left: 6px; }
+
 @media (max-width: 600px) {
     .title { font-size: 36px; }
     .word-english { font-size: 40px; }
@@ -543,4 +578,6 @@ body {
     .action-buttons .btn { width: 100%; max-width: 280px; }
     .day-emoji { font-size: 36px; }
     .day-word { font-size: 14px; }
+    .sentence-item { font-size: 16px; }
+    .sentence-cn { font-size: 14px; }
 }

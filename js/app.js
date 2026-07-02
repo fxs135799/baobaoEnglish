@@ -481,11 +481,17 @@ function startExam(weekIdx) {
 function playExamWord() {
     const q = examQuestions[currentExamIndex];
     if (!q) return;
-    const utter = new SpeechSynthesisUtterance(q.target.english);
-    utter.lang = 'en-US';
-    utter.rate = 0.8;
     window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(utter);
+
+    const utterEn = new SpeechSynthesisUtterance(q.target.english);
+    utterEn.lang = 'en-US';
+    utterEn.rate = 0.8;
+    window.speechSynthesis.speak(utterEn);
+
+    const utterCn = new SpeechSynthesisUtterance(q.target.chinese);
+    utterCn.lang = 'zh-CN';
+    utterCn.rate = 0.8;
+    window.speechSynthesis.speak(utterCn);
 }
 
 function loadExamQuestion() {
@@ -645,23 +651,40 @@ function nextWeek() {
 function playSentence(sentenceIndex) {
     const word = getCurrentWord();
     if (!word || !word.sentences || !word.sentences[sentenceIndex]) return;
-    const sentence = word.sentences[sentenceIndex];
-    const enPart = sentence.split('。')[0].trim();
-    const utter = new SpeechSynthesisUtterance(enPart);
-    utter.lang = 'en-US';
-    utter.rate = 0.7;
     window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(utter);
+
+    const sentence = word.sentences[sentenceIndex];
+    const parts = sentence.split('。');
+    const enPart = parts[0].trim();
+    const cnPart = parts.slice(1).join('。').trim();
+
+    const utterEn = new SpeechSynthesisUtterance(enPart);
+    utterEn.lang = 'en-US';
+    utterEn.rate = 0.7;
+    window.speechSynthesis.speak(utterEn);
+
+    if (cnPart) {
+        const utterCn = new SpeechSynthesisUtterance(cnPart);
+        utterCn.lang = 'zh-CN';
+        utterCn.rate = 0.7;
+        window.speechSynthesis.speak(utterCn);
+    }
 }
 
 function playWord() {
     const word = getCurrentWord();
     if (!word) return;
-    const utter = new SpeechSynthesisUtterance(word.english);
-    utter.lang = 'en-US';
-    utter.rate = 0.8;
     window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(utter);
+
+    const utterEn = new SpeechSynthesisUtterance(word.english);
+    utterEn.lang = 'en-US';
+    utterEn.rate = 0.8;
+    window.speechSynthesis.speak(utterEn);
+
+    const utterCn = new SpeechSynthesisUtterance(word.chinese);
+    utterCn.lang = 'zh-CN';
+    utterCn.rate = 0.8;
+    window.speechSynthesis.speak(utterCn);
 }
 
 function startSpeak() {

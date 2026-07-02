@@ -534,40 +534,40 @@ body {
 .exam-dot.correct { background: #2ecc71; }
 .exam-dot.wrong { background: #e74c3c; }
 
-.sentences-box {
+.sentence-card {
     width: 100%;
     max-width: 600px;
     background: white;
     border-radius: 20px;
-    padding: 20px;
+    padding: 25px;
     margin-top: 15px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    text-align: left;
+    text-align: center;
+    animation: cardPop 0.4s ease;
 }
 
-.sentence-item {
+.sentence-label {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.sentence-en {
+    font-size: 26px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.sentence-cn {
     font-size: 18px;
-    color: #555;
-    padding: 10px 0;
-    border-bottom: 1px dashed #eee;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: all 0.2s;
+    color: #888;
 }
 
-.sentence-item:last-child { border-bottom: none; }
-
-.sentence-item:hover { background: #f8f9fa; border-radius: 10px; }
-
-.sentence-speaker { font-size: 22px; flex-shrink: 0; }
-
-.sentence-text { line-height: 1.5; }
-
-.sentence-en { font-weight: 600; color: #333; }
-
-.sentence-cn { color: #888; font-size: 16px; margin-left: 6px; }
+.btn-sentence {
+    background: linear-gradient(135deg, #f6d365, #fda085);
+    color: white;
+}
 
 @media (max-width: 600px) {
     .title { font-size: 36px; }

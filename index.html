@@ -53,11 +53,19 @@
                     <div class="word-english" id="word-english">cat</div>
                     <div class="word-chinese" id="word-chinese">小猫</div>
                 </div>
-                <div class="sentences-box" id="sentences-box"></div>
+                <div class="sentence-card" id="sentence-card">
+                    <div class="sentence-label">今日句子</div>
+                    <div class="sentence-en" id="sentence-en"></div>
+                    <div class="sentence-cn" id="sentence-cn"></div>
+                </div>
                 <div class="action-buttons">
                     <button class="btn btn-listen" onclick="playWord()">
                         <span class="btn-icon">🔊</span>
-                        <span>听发音</span>
+                        <span>听单词</span>
+                    </button>
+                    <button class="btn btn-sentence" onclick="playSentence()">
+                        <span class="btn-icon">🗣️</span>
+                        <span>听句子</span>
                     </button>
                     <button class="btn btn-speak" id="btn-speak" onclick="startSpeak()">
                         <span class="btn-icon" id="speak-icon">⭐</span>

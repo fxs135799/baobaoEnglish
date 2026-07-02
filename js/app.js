@@ -648,12 +648,12 @@ function nextWeek() {
 }
 
 // ========== 语音 ==========
-function playSentence(sentenceIndex) {
+function playSentence() {
     const word = getCurrentWord();
-    if (!word || !word.sentences || !word.sentences[sentenceIndex]) return;
+    if (!word || !word.sentences || !word.sentences[0]) return;
     window.speechSynthesis.cancel();
 
-    const sentence = word.sentences[sentenceIndex];
+    const sentence = word.sentences[0];
     const parts = sentence.split('。');
     const enPart = parts[0].trim();
     const cnPart = parts.slice(1).join('。').trim();
@@ -704,15 +704,13 @@ function loadWord() {
     document.getElementById('word-english').textContent = word.english;
     document.getElementById('word-chinese').textContent = word.chinese;
 
-    // 渲染例句
-    const sentencesBox = document.getElementById('sentences-box');
-    if (sentencesBox && word.sentences) {
-        sentencesBox.innerHTML = word.sentences.map((s, i) => {
-            const parts = s.split('。');
-            const en = parts[0].trim() + '。';
-            const cn = parts.slice(1).join('。').trim();
-            return '<div class="sentence-item" onclick="playSentence(' + i + ')"><span class="sentence-speaker">🔊</span><span class="sentence-text"><span class="sentence-en">' + en + '</span><span class="sentence-cn">' + cn + '</span></span></div>';
-        }).join('');
+    // 渲染今日句子（取第一句）
+    const sentenceEn = document.getElementById('sentence-en');
+    const sentenceCn = document.getElementById('sentence-cn');
+    if (sentenceEn && sentenceCn && word.sentences && word.sentences[0]) {
+        const parts = word.sentences[0].split('。');
+        sentenceEn.textContent = parts[0].trim() + '。';
+        sentenceCn.textContent = parts.slice(1).join('。').trim();
     }
 
     const card = document.getElementById('word-card');

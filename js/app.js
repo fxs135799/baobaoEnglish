@@ -654,9 +654,13 @@ function playSentence() {
     window.speechSynthesis.cancel();
 
     const phrase = word.phrase;
-    const parts = phrase.split('。');
-    const enPart = parts[0].trim();
-    const cnPart = parts.slice(1).join('。').trim();
+    const match = phrase.match(/[一-龥]/);
+    let enPart = phrase;
+    let cnPart = '';
+    if (match) {
+        enPart = phrase.substring(0, match.index).trim();
+        cnPart = phrase.substring(match.index).trim();
+    }
 
     const utterEn = new SpeechSynthesisUtterance(enPart);
     utterEn.lang = 'en-US';
@@ -708,9 +712,18 @@ function loadWord() {
     const sentenceEn = document.getElementById('sentence-en');
     const sentenceCn = document.getElementById('sentence-cn');
     if (sentenceEn && sentenceCn && word.phrase) {
-        const parts = word.phrase.split('。');
-        sentenceEn.textContent = parts[0].trim() + '。';
-        sentenceCn.textContent = parts.slice(1).join('。').trim();
+        const match = word.phrase.match(/[一-龥]/);
+        if (match) {
+            sentenceEn.textContent = word.phrase.substring(0, match.index).trim();
+            sentenceCn.textContent = word.phrase.substring(match.index).trim();
+        } else {
+            sentenceEn.textContent = word.phrase;
+            sentenceCn.textContent = '';
+        }
+    } else {
+            sentenceEn.textContent = word.phrase;
+            sentenceCn.textContent = '';
+        }
     }
 
     const card = document.getElementById('word-card');
